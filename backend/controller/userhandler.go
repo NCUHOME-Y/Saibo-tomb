@@ -66,7 +66,7 @@ func Login(c *gin.Context) {
 
 	if user.Code != code {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{
-			"code": 422,
+			"code": 3,
 			"msg":  "密码错误",
 		})
 		return
@@ -94,7 +94,8 @@ func GetTomb(c *gin.Context) {
 	err = db.Model(&model.UserTomb{}).Where("id = ?", userId).Find(&userData).Error
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "未查找到信息",
+			"code": 4,
+			"msg":  "未查找到信息",
 		})
 	}
 
@@ -108,6 +109,10 @@ func GetTomb(c *gin.Context) {
 	db.Model(&model.Tomb{}).Where("id = ?", userFirstId).Find(&userFirstTomb)
 	db.Model(&model.Tomb{}).Where("id = ?", userSecondId).Find(&userSecondTomb)
 	db.Model(&model.Tomb{}).Where("id = ?", userThirdId).Find(&userThirdTomb)
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "查找成功",
+	})
 }
 
 func DeleteTomb(c *gin.Context) {
@@ -122,7 +127,12 @@ func DeleteTomb(c *gin.Context) {
 	err := db.Model(model.Tomb{}).Delete(&deleteTombData).Error
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "删除失败！",
+			"code": 5,
+			"msg":  "删除失败！",
+		})
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "删除成功",
 		})
 	}
 }
@@ -140,9 +150,15 @@ func PutTomb(c *gin.Context) {
 	err := db.Model(&putTomb).Updates(&putTomb).Error
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "修改失败",
+			"code": 6,
+			"msg":  "修改失败",
+		})
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "修改成功",
 		})
 	}
+
 }
 
 func CreateTomb(c *gin.Context) {
@@ -159,7 +175,17 @@ func CreateTomb(c *gin.Context) {
 		TombText: tombText,
 	}
 
-	db.Create(newTomb)
+	err := db.Create(newTomb)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code": 8,
+			"msg":  "创建失败",
+		})
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "创建成功",
+		})
+	}
 }
 
 func ChangeTombFunction(c *gin.Context) {
@@ -180,7 +206,12 @@ func ChangeTombFunction(c *gin.Context) {
 	err := db.Model(&styleChange).Updates(&styleChange).Error
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg": "添加失败",
+			"code": 7,
+			"msg":  "添加失败",
+		})
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "修改成功",
 		})
 	}
 
