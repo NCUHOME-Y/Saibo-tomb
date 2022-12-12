@@ -10,7 +10,7 @@ import (
 var DB *gorm.DB
 
 func Init() *gorm.DB {
-	db, err := gorm.Open(mysql.Open("root:wh86005806@tcp(47.98.44.140:3306)/test?charset=utf8&parseTime=true&loc=Local"), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open("root:wh86005806@tcp(47.98.44.140:3306)/hackweek?charset=utf8&parseTime=true&loc=Local"), &gorm.Config{})
 	if err != nil {
 		panic("连接失败" + err.Error())
 	}
