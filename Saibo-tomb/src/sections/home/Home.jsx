@@ -10,7 +10,6 @@ import {
   Popup,
   Space,
   TextArea,
-  SwiperRef,
   Image,
   Dialog,
   Selector,
@@ -26,8 +25,8 @@ import styles from './home.module.css'
 const Home = () => {
   const ref = useRef(null)
   const { taskStore } = useStore()
-  const [activeTab, setActiveTab] = useState('搞定mobx')
-  const [isFixed, setIsFixed] = useState(false)
+  // const [activeTab, setActiveTab] = useState('搞定mobx')
+  // const [isFixed, setIsFixed] = useState(false)
   const [visiblePopup1, setVisiblePopup1] = useState(true)
   const [visiblePopup2, setVisiblePopup2] = useState(true)
   const [visiblePopup3, setVisiblePopup3] = useState(true)

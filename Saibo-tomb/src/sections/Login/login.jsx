@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import styles from './denglujiemian1.module.css'
 import { useNavigate } from 'react-router-dom'
-import { useStore } from 'C:/Users/18767/Desktop/html/22/bilibili-activity-page-demo-1/src/store'
-import { Card, Form, Input, Checkbox, Button, Toast, Space, Image, Popup, AutoCenter, Divider } from 'antd-mobile'
+// import { useStore } from '../../store'
+import { Toast, Popup, AutoCenter, Divider } from 'antd-mobile'
 
 export default function Login () {
   const mobileRef = useRef()
@@ -10,7 +10,7 @@ export default function Login () {
   const check = useRef()
   const [visible1, setVisible1] = useState(false)
   const navigate = useNavigate()
-  const { loginStore } = useStore()
+  // const { loginStore } = useStore()
   function visitorLog () {
     navigate('/home', { replace: true })
     // 提示用户
@@ -41,9 +41,21 @@ export default function Login () {
       return
     }
     else {
-      let res = await loginStore.getToken({ mobile, code })
-      if (res === 0) {
-        // 跳转首页
+      console.log(mobile, code)
+      // 使用fetch函数发送注册请求
+      const response = await fetch('https://65f610x805.zicp.fun/login', {
+        method: 'POST',
+        body: JSON.stringify({ mobile, code }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+
+      // 处理服务器返回的响应
+      if (response.ok) {
+        // 如果响应成功，表示注册成功
+        // this.token = response.data.token
+        // console.log(this.token)
+        // alert(this.token)
+        //存入ls(localStorage)
         navigate('/home', { replace: true })
         // 提示用户
         Toast.show({
@@ -52,10 +64,12 @@ export default function Login () {
             console.log('after')
           },
         })
-      }
-      else {
-        console.log('登录失败:' + res.msg)
-
+      } else {
+        // 否则表示注册失败，显示错误信息
+        const data = await response.json()
+        alert(data)
+        console.log(data)
+        return data
       }
     }
   }

@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import styles from '../register/index.module.css'
 import { useNavigate } from 'react-router-dom'
-import { useStore } from 'C:/Users/18767/Desktop/html/22/bilibili-activity-page-demo-1/src/store'
-import { Card, Form, Input, Checkbox, Button, Toast, Space, Image } from 'antd-mobile'
+import { useStore } from '../../store'
+import { Toast } from 'antd-mobile'
 
 export default function Forget () {
   const mobileRef = useRef()

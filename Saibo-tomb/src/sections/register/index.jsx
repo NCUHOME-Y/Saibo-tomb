@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import styles from '../register/index.module.css'
 import { useNavigate } from 'react-router-dom'
-import { useStore } from 'C:/Users/18767/Desktop/html/22/bilibili-activity-page-demo-1/src/store'
-import { Card, Form, Input, Checkbox, Button, Toast, Space, Image } from 'antd-mobile'
+import { useStore } from '../../store'
+import { Toast } from 'antd-mobile'
 
 export default function Register () {
   const mobileRef = useRef()
@@ -11,23 +11,13 @@ export default function Register () {
   const check = useRef()
   const navigate = useNavigate()
   const { loginStore } = useStore()
-  function visitorLog () {
-    navigate('/home', { replace: true })
-    // 提示用户
-    Toast.show({
-      content: '欢迎',
-      afterClose: () => {
-        console.log('after')
-      },
-    })
-  }
   const onlogin = () => {
     navigate('/', { replace: true })
   }
   async function onFinish () {
     const mobile = mobileRef.current.value
     const code1 = codeRef1.current.value
-    const code2 = codeRef1.current.value
+    const code2 = codeRef2.current.value
     // values：放置的是所有表单项中用户输入的内容
     // todo:登录
     if (!mobile || !code1 || !code2) {
@@ -42,11 +32,13 @@ export default function Register () {
       alert("两次输入密码不一致")
     }
     else {
+      console.log(mobile, code1)
       let res = await loginStore.getToken({ mobile, code1 })
       if (res === 0) {
         // 跳转首页
         navigate('/', { replace: true })
         // 提示用户
+        alert("注册成功")
         Toast.show({
           content: '请登录',
           afterClose: () => {
@@ -73,10 +65,10 @@ export default function Register () {
             <input className={`${styles['font_1']} ${styles['text']} ${styles['text_2']}  ${styles['input1']}`} placeholder="用户名" name='mobile' ref={mobileRef}></input>
           </div>
           <div className={`flex-col justify-start items-start ${styles['text-wrapper']} ${styles['view_2']}`}>
-            <input className={`${styles['font_1']} ${styles['text']} ${styles['text_2']}  ${styles['input1']}`} placeholder="密码" name='code' ref={codeRef1}></input>
+            <input className={`${styles['font_1']} ${styles['text']} ${styles['text_2']}  ${styles['input1']}`} placeholder="密码" name='code1' ref={codeRef1}></input>
           </div>
           <div className={`flex-col justify-start items-start ${styles['text-wrapper']} ${styles['view_2']}`}>
-            <input className={`${styles['font_1']} ${styles['text']} ${styles['text_2']}  ${styles['input1']}`} placeholder="请再次输入密码" name='code' ref={codeRef2}></input>
+            <input className={`${styles['font_1']} ${styles['text']} ${styles['text_2']}  ${styles['input1']}`} placeholder="请再次输入密码" name='code2' ref={codeRef2}></input>
           </div>
           {/* <div className={`flex-col justify-start items-center ${styles['button']}`}> */}
           <button className={`${styles['font_2']} ${styles['text_4']} ${styles['button']}`} onClick={onFinish}>注册</button>

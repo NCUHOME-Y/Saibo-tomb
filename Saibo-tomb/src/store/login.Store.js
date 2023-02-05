@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx"
-import { http, setToken, getToken, removeToken } from '../utils'
+import { setToken, getToken, removeToken } from '../utils'
 class LoginStore {
   token = getToken() || ''
   constructor() {
@@ -16,16 +16,16 @@ class LoginStore {
     // 处理服务器返回的响应
     if (response.ok) {
       // 如果响应成功，表示注册成功
-      this.token = response.data.token
-      console.log(this.token)
-      alert(this.token)
-      //存入ls(localStorage)
-      setToken(this.token)
+      // this.token = response.data.token
+      // console.log(this.token)
+      // alert(this.token)
+      // //存入ls(localStorage)
+      // setToken(this.token)
       return 0
     } else {
       // 否则表示注册失败，显示错误信息
       const data = await response.json()
-      console.log('失败' + data)
+      console.log(data)
       return data
     }
   }
