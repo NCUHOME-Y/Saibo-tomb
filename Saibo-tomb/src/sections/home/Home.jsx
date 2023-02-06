@@ -37,7 +37,10 @@ const Home = () => {
   const [visibleImg3, setVisibleImg3] = useState(false)
   const [visibleImg4, setVisibleImg4] = useState(false)
   const [visibleImg5, setVisibleImg5] = useState(false)
-  const secondSectionRef = useRef(null)
+  // const [visibleImg6, setVisibleImg6] = useState(false)
+  // const [visibleImg7, setVisibleImg7] = useState(false)
+  // const [visibleImg8, setVisibleImg8] = useState(false)
+  // const secondSectionRef = useRef(null)
   //删除
   function delTask (id) {
     taskStore.delTask(id)
@@ -50,10 +53,12 @@ const Home = () => {
     console.log(values)
     console.log(values.address)
     console.log(values.name + '的坟墓')
+    console.log(values.style[0])
     taskStore.addTask({
       id: uuid(),
       name: values.name + '的坟墓',
       address: values.address,
+      bg:values.style[0],
     })
     Toast.show({
       content: '我们成功地打造了一个崭新的坟墓，它安葬了一个灵魂。可左右滑动切换新的坟墓！',
@@ -175,12 +180,12 @@ const Home = () => {
             </div>
           </div>
         </div>
-        {/* <Image src={MovieImage}></Image> */}
       </div>
     </Swiper.Item>
   ))
   return (
     <>
+    {/* 初始页面 */}
       {items.length === 0 ?
         <div className={`relative ${styles['page11']}`}>
           <span className={`${styles['text1']} ${styles['pos3']}`}>创建你的第一个</span>
@@ -271,10 +276,11 @@ const Home = () => {
               }}
             />
           </div>
-          {/* 花 */}
+          <div className={`flex-row ${styles['equal-division_1']} ${styles['space-x-18']}`}>
+          {/* 花粉色 */}
           <img
             className={`${styles['equal-division-item_1']} ${styles['image_25']}`}
-            src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6394067a5a7e3f0310afcebb/639446fd5281490011ca7514/16706793054339433649.png"
+            src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6394067a5a7e3f0310afcebb/639446fd5281490011ca7514/16706793054121113130.png"
             onClick={() => {
               setVisibleImg4(!visibleImg4)
               if (visibleImg4 === false) {
@@ -284,6 +290,46 @@ const Home = () => {
               }
             }}
           />
+          {/* 花紫色 */}
+          <img
+            className={`${styles['equal-division-item_1']} ${styles['image_21']}`}
+            src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6394067a5a7e3f0310afcebb/639446fd5281490011ca7514/16706793054285307272.png"
+            onClick={() => {
+              setVisibleImg4(!visibleImg4)
+              if (visibleImg4 === false) {
+                Toast.show({
+                  content: '献花给墓主人',
+                })
+              }
+            }}
+          />
+          {/* 花蓝色 */}
+          <img
+            className={`${styles['equal-division-item_1']} ${styles['image_21']}`}
+            src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6394067a5a7e3f0310afcebb/639446fd5281490011ca7514/16706793054339433649.png"
+             onClick={() => {
+              setVisibleImg4(!visibleImg4)
+              if (visibleImg4 === false) {
+                Toast.show({
+                  content: '献花给墓主人',
+                })
+              }
+            }}
+          />
+          {/* 蛋糕 */}
+          <img
+            className={`${styles['equal-division-item_1']} ${styles['image_21']}`}
+            src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6394067a5a7e3f0310afcebb/639446fd5281490011ca7514/16706793054361607939.png"
+             onClick={() => {
+              setVisibleImg4(!visibleImg4)
+              if (visibleImg4 === false) {
+                Toast.show({
+                  content: '美味的蛋糕送给墓主人',
+                })
+              }
+            }}
+          />
+          </div>
         </div>
       </Popup>
       {/* 新增弹窗 */}
@@ -303,12 +349,12 @@ const Home = () => {
                   挖个坟埋葬谁吧
                 </Button>
               }>
-              {/* <Form.Header>创建你的坟墓</Form.Header> */}
+              <Form.Header>创建你的坟墓</Form.Header>
               <Form.Item
                 name="name"
                 label="墓主名"
                 rules={[{ required: true, message: '姓名不能为空' }]}>
-                <Input placeholder="请输入墓主" />
+                <Input placeholder="请输入墓主"/>
               </Form.Item>
               <Form.Item name="address" label="墓志铭" help="请在这里镌刻我的墓志铭，铭记我伟大的一生！">
                 <TextArea
@@ -318,22 +364,22 @@ const Home = () => {
                   showCount
                 />
               </Form.Item>
-              {/* <Form.Item name="style" label="样式" required>
+              <Form.Item name="style" label="样式" required>
                 <Selector
                   options={[
                     {
                       label: '选项一',
-                      description: '描述信息',
-                      value: 'yes',
+                      description: '天蓝色',
+                      value: '1',
                     },
                     {
                       label: '选项二',
-                      description: '描述信息',
-                      value: 'no',
+                      description: '火红色',
+                      value: '2',
                     },
                   ]}
                 />
-              </Form.Item> */}
+              </Form.Item>
             </Form>
           </Space>
         </div>

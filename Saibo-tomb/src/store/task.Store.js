@@ -6,7 +6,8 @@ class TaskStore {
     {
       id: 1,
       name: '王XX的坟墓',
-      address: "哈哈哈哈死啦"
+      address: "哈哈哈哈死啦",
+      bg:'1'
     },
   ]
   constructor() {

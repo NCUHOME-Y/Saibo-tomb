@@ -15,6 +15,17 @@
   right: 0;
   top: 0;
 }
+.section_add_1 {
+  background-image: url("https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6394067a5a7e3f0310afcebb/639446fd5281490011ca7514/16706619214171775015.png"
+  );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 52.25rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
 .image {
   border-radius: 0.63rem;
   width: 2.5rem;
@@ -188,7 +199,7 @@
   flex: 1 1 4.38rem;
 }
 .image_25 {
-  align-self: flex-start;
+  flex: 1 1 4.38rem;
 }
 .page1 {
   padding: 3.25rem 1.5rem 13rem;
@@ -244,3 +255,16 @@
   bottom: 7.25rem;
   transform: translateX(-50%);
 }
+/* .section_3 {
+  margin-right: 0.56rem;
+  padding: 3.63rem 2.25rem 2rem 2.5rem;
+  background-color: #00245c6e;
+  border: solid 0.13rem #00e0ff;
+}
+.text_form {
+  color: #00efff;
+  font-size: 1.25rem;
+  font-family: Caramel;
+  line-height: 1.16rem;
+  letter-spacing: 0.13rem;
+} */
