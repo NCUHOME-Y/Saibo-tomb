@@ -1,3 +1,7 @@
 :global .antInput {
   border-radius: 0;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  height: 32px;
 }
