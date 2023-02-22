@@ -1,9 +1,22 @@
-.page {
-  height: 52.75rem;
+/* 媒体查询,大于390px时，页面居中显示 */
+@media (max-width: 390px) {
+  .page {
+    height: 52.75rem;
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+  }
+}
+@media screen and (min-width: 390px) {
+  .page {
+    height: 52.75rem;
+    width: 390px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    margin: 0 auto;
+  }
 }
 .section {
   background-image: url('https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/6394067a5a7e3f0310afcebb/639446fd5281490011ca7514/16706619233008931621.png');

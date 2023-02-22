@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+/* 实现媒体查询，在最大宽度小于390px时为默认显示，最大宽度大于390px时固定显示宽度为390px，其余用渐变色填充 */
+@media (max-width: 390px) {
+  .card {
+    width: 100%;
+  }
+}
+@media (min-width: 390px) {
+  .card {
+    width: 390px;
+    margin: 0 auto;
+  }
+}
